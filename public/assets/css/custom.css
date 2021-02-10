@@ -1,0 +1,36 @@
+.error {
+    color: red !important;
+}
+
+.white {
+    color: white !important;
+}
+
+.text-c-red {
+    color: red !important;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Force la taille de la modale plus grande pour la création d'une étape */
+@media (min-width: 576px) {
+    .modal-xxl {
+        max-width: 900px !important;
+        margin: 1.75rem auto !important;
+    }
+}
+
+.modal-footer {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    padding: 1rem;
+    border-top: 1px solid #dee2e6;
+    border-bottom-right-radius: .3rem;
+    border-bottom-left-radius: .3rem
+}

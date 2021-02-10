@@ -1,0 +1,104 @@
+<div class="modal fade" id="modal-create-stage" tabindex="-1" role="dialog" aria-labelledby="ExtraLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xxl">
+        <form action="{{ path("stages_register") }}" method="post" id="stage-form-creator">
+            <div class="modal-content">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Création d'une étape</strong>
+                        <small> (à rattacher à un voyage)</small>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="card-body card-block">
+                        <div class="row form-group">
+                            <div class="col col-md-3">
+                                <label for="selectType" class="form-control-label">Sélectionnez un type</label>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <select name="selectType" id="selectType" class="form-control-sm form-control">
+                                    <option value="0">Faites votre choix</option>
+                                    {% for type in types %}
+                                        <option value="{{ type.id }}">{{ type.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col col-md-3">
+                                <label for="departureCity" class="form-control-label">Sélectionnez une ville de départ</label>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <select name="departureCity" id="departureCity" class="form-control-sm form-control" required>
+                                    <option value="0">Faites votre choix</option>
+                                    {% for city in cities %}
+                                        <option value="{{ city.id }}">{{ city.name ~ ' (' ~ city.CountryTag ~ ')'}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col col-md-3">
+                                <label for="departureCityDate" class="form-control-label">Départ le</label>
+                            </div>
+                            <div class="col col-md-9">
+                                <div class="input-group">
+                                    <input type="text" id="datepicker-range-start" class="form-control" name="departureCityDate" required>
+                                    <div class="input-group-addon">
+                                        <i class="fas fa-calendar"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col col-md-3">
+                                <label for="arrivalCity" class="form-control-label">Sélectionnez une ville d'arrivée</label>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <select name="arrivalCity" id="arrivalCity" class="form-control-sm form-control" required>
+                                    <option value="0">Faites votre choix</option>
+                                    {% for city in cities %}
+                                        <option value="{{ city.id }}">{{ city.name ~ ' (' ~ city.CountryTag ~ ')'}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col col-md-3">
+                                <label for="arrivalCityDate" class="form-control-label">Arrivée le</label>
+                            </div>
+                            <div class="col col-md-9">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fas fa-calendar"></i>
+                                    </div>
+                                    <input type="text" id="datepicker-range-end" class="form-control" name="arrivalCityDate" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="number" class="form-control-label">Numéro</label>
+                            <input type="text" name="number" id="number" placeholder="Saisissez un numéro" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="seat" class="form-control-label">Siège</label>
+                            <input type="text" name="seat" id="seat" placeholder="Saisissez un siège" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="gate" class="form-control-label">Porte</label>
+                            <input type="text" name="gate" id="gate" placeholder="Saisissez un nom de porte" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="baggagesDrop" class="form-control-label">Bagages</label>
+                            <input type="text" name="baggagesDrop" id="baggagesDrop" placeholder="Saisissez un bagage" class="form-control">
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="submit"> Sauvegarder </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

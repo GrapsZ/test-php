@@ -1,0 +1,2 @@
+Problème du choix des datatables : Toutes les données sont chargées à l'ouverture de la page.
+Si beaucoup de données = chargement long.

@@ -1,0 +1,100 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ page_name }}{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset("assets/vendor/zebra-datepicker/css/bootstrap/zebra_datepicker.css") }}" rel="stylesheet" media="all">
+{% endblock %}
+
+{% block body %}
+    <div class="section__content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="title-5 m-b-35">Nos étapes</h3>
+                    <div class="table-data__tool">
+                        <div class="table-data__tool-left">
+                            <div class="rs-select2--light rs-select2--md">
+                            </div>
+                        </div>
+                        <div class="table-data__tool-right">
+                            <button class="au-btn au-btn-icon au-btn--green au-btn--small" data-toggle="modal" data-target="#modal-create-stage">
+                                <i class="zmdi zmdi-plus"></i>Ajouter une étape
+                            </button>
+                        </div>
+                    </div>
+                    <div class="table-responsive table-responsive-data2">
+                        <table class="table table-borderless table-striped table-earning stageDatatables">
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Départ</th>
+                                    <th>Arrivée</th>
+                                    <th>Numéro</th>
+                                    <th>Départ</th>
+                                    <th>Arrivée</th>
+                                    <th>Siège</th>
+                                    <th>Porte</th>
+                                    <th>Bagages</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for stage in stages %}
+                                <tr>
+                                    <td class="font-weight-bold">
+                                        {{ stage.type.name }}
+                                    </td>
+                                    <td class="font-weight-bold">
+                                        {{ stage.departure.name }}
+                                    </td>
+                                    <td class="font-weight-bold">
+                                        {{ stage.arrival.name }}
+                                    </td>
+                                    <td class="font-weight-bold">
+                                        {{ stage.number }}
+                                    </td>
+                                    <td class="font-weight-bold">
+                                        {{ stage.departureDate | date("d-m-Y") ~ ' à ' ~ stage.departureDate | date("H:i") }}
+                                    </td>
+                                    <td class="font-weight-bold">
+                                        {{ stage.arrivalDate | date("d-m-Y") ~ ' à ' ~ stage.arrivalDate | date("H:i") }}
+                                    </td>
+                                    <td class="font-weight-bold">
+                                        {{ stage.seat }}
+                                    </td>
+                                    <td class="font-weight-bold">
+                                        {{ stage.gate }}
+                                    </td>
+                                    <td class="font-weight-bold">
+                                        {{ stage.baggageDrop }}
+                                    </td>
+                                    <td>
+                                        <div class="table-data-feature">
+                                            <span class="openEditModal" data-toggle="modal" data-target="#modal-edit-stage" data-id="{{ stage.id }}">
+                                                <button class="item" data-toggle="tooltip" data-placement="top" title="Editer">
+                                                    <i class="zmdi zmdi-edit"></i>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            {% include 'includes/footer.html.twig' %}
+        </div>
+    </div>
+    {% include 'stages/includes/modal_stage_creator.html.twig' %}
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset("assets/js/customs.js") }}"></script>
+    <script src="{{ asset("assets/vendor/jquery-validator/jquery.validate.min.js") }}"></script>
+    <script src="{{ asset("assets/vendor/jquery-validator/localization/messages_fr.min.js") }}"></script>
+    <script src="{{ asset("assets/vendor/zebra-datepicker/zebra_datepicker.src.js") }}"></script>
+    <script src="{{ asset("assets/js/form_create_stage.js") }}"></script>
+{% endblock %}

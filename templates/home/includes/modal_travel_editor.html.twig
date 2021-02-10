@@ -1,0 +1,77 @@
+<div class="modal fade" id="modal-edit-travel" tabindex="-1" role="dialog" aria-labelledby="ExtraLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xxl">
+        <form action="{{ path("travel_update") }}" method="post" id="travel-form-editor">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <input type="text" id="id-editor" class="hidden" name="id">
+                    <h5 class="modal-title" id="title-editor"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="name-editor">Intitulé du voyage <span class="text-c-red">*</span></label>
+                                <input type="text" class="form-control" name="name-editor" id="name-editor"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="price-editor">Prix du voyage <span class="text-c-red">*</span></label>
+                                <input type="number" class="form-control" name="price-editor" id="price-editor">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <span>Voyage actif:</span>
+                        </div>
+                        <label class="switch switch-3d switch-success mr-3">
+                            <input type="checkbox" class="switch-input" checked="checked" name="active-editor" id="active-editor">
+                            <span class="switch-label"></span>
+                            <span class="switch-handle"></span>
+                        </label>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                Etapes du voyage :
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="row form-group">
+                                <div class="nav nav-tabs" id="nav-tab-editor" role="tablist">
+
+                                </div>
+                                <div class="tab-content pl-3 pt-2" id="nav-tabContent">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-group hidden" id="stages-choice">
+                        <div class="col .col-md-3">
+                            <label for="multiple-stage" class=" form-control-label">Choisissez les étapes du voyage</label>
+                        </div>
+                        <div class="col col-md-6">
+                            <select name="multiple-stage[]" id="multiple-stage" multiple="" class="form-control">
+
+                            </select>
+                        </div>
+                        <div class="col .col-md-3">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="submit"> Sauvegarder </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

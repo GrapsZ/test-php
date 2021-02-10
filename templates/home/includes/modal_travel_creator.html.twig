@@ -1,0 +1,35 @@
+<div class="modal fade" id="modal-create-travel" tabindex="-1" role="dialog" aria-labelledby="ExtraLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <form action="{{ path("travel_register") }}" method="post" id="travel-form">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Enregistrement d'un nouveau voyage</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="travelName">Intitulé du voyage <span class="text-c-red">*</span></label>
+                                <input type="text" class="form-control" name="travelName" id="travelName"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="price">Prix du voyage <span class="text-c-red">*</span></label>
+                                <input type="number" class="form-control" name="price" id="price">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" id="submit" type="submit"> Sauvegarder </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

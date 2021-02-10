@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="{% block description %}{% endblock %}">
+        <meta name="author" content="Michael Thaize">
+        <meta name="keywords" content="{% block keywords %}{% endblock %}">
+
+        <title>Agence web : {% block title %}{% endblock %}</title>
+        <!-- Fontfaces CSS-->
+        <link href="{{ asset("assets/css/font-face.css") }}" rel="stylesheet" media="all">
+        <link href="{{ asset("assets/vendor/font-awesome-4.7/css/font-awesome.min.css") }}" rel="stylesheet" media="all">
+        <link href="{{ asset("assets/vendor/font-awesome-5/css/fontawesome-all.min.css") }}" rel="stylesheet" media="all">
+        <link href="{{ asset("assets/vendor/mdi-font/css/material-design-iconic-font.min.css") }}" rel="stylesheet" media="all">
+
+        <!-- Bootstrap CSS-->
+        <link href="{{ asset("assets/vendor/bootstrap-4.1/bootstrap.min.css") }}" rel="stylesheet" media="all">
+
+        <!-- Vendor CSS-->
+        <link href="{{ asset("assets/vendor/animsition/animsition.min.css") }}" rel="stylesheet" media="all">
+        <link href="{{ asset("assets/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css") }}" rel="stylesheet" media="all">
+        <link href="{{ asset("assets/vendor/wow/animate.css") }}" rel="stylesheet" media="all">
+        <link href="{{ asset("assets/vendor/css-hamburgers/hamburgers.min.css") }}" rel="stylesheet" media="all">
+        <link href="{{ asset("assets/vendor/slick/slick.css") }}" rel="stylesheet" media="all">
+        <link href="{{ asset("assets/vendor/select2/select2.min.css") }}" rel="stylesheet" media="all">
+        <link href="{{ asset("assets/vendor/perfect-scrollbar/perfect-scrollbar.css") }}" rel="stylesheet" media="all">
+
+        <!-- Datatables -->
+        <link href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css" rel="stylesheet" media="all">
+
+        <!-- Main CSS-->
+        <link href="{{ asset("assets/css/theme.css") }}" rel="stylesheet" media="all">
+        <!-- STYLE CSS CUSTOM -->
+        <link href="{{ asset("assets/css/custom.css") }}" rel="stylesheet" media="all">
+        {% block stylesheets %} {% endblock %}
+    </head>
+
+    <body>
+    <!-- Desktop Menu -->
+    {% include 'includes/menu.html.twig' %}
+    <div class="page-container">
+        <!-- Top Navbar / Menu -->
+        {%  include 'includes/top_navbar.html.twig' %}
+        <div class="main-content">
+            <div class="col-md-6 offset-md-3">
+                {% for label, messages in app.flashes %}
+                    {% for message in messages %}
+                        <div class="sufee-alert alert with-close alert-{{ label }} alert-dismissible fade show">
+                            {{ message | raw }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+            {% block body %}{% endblock %}
+        </div>
+    </div>
+    <!-- Jquery JS-->
+    <script src="{{ asset("assets/vendor/jquery-3.2.1.min.js") }}"></script>
+    <!-- Bootstrap JS-->
+    <script src="{{ asset("assets/vendor/bootstrap-4.1/popper.min.js") }}"></script>
+    <script src="{{ asset("assets/vendor/bootstrap-4.1/bootstrap.min.js") }}"></script>
+
+    <!-- Datatables JS -->
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.20/b-1.6.1/b-flash-1.6.1/b-html5-1.6.1/datatables.min.js"></script>
+    <script type="text/javascript" src="{{ asset("assets/vendor/dataTables.bootstrap4.min.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("assets/js/datatables.js") }}"></script>
+
+    <!-- Vendor JS       -->
+    <script src="{{ asset("assets/vendor/slick/slick.min.js") }}"></script>
+    <script src="{{ asset("assets/vendor/wow/wow.min.js") }}"></script>
+    <script src="{{ asset("assets/vendor/animsition/animsition.min.js") }}"></script>
+    <script src="{{ asset("assets/vendor/circle-progress/circle-progress.min.js") }}"></script>
+    <script src="{{ asset("assets/vendor/perfect-scrollbar/perfect-scrollbar.js") }}"></script>
+    <script src="{{ asset("assets/vendor/chartjs/Chart.bundle.min.js") }}"></script>
+    <script src="{{ asset("assets/vendor/select2/select2.min.js") }}"></script>
+
+    <!-- Main JS-->
+    <script src="{{ asset("assets/js/main.js") }}"></script>
+    {% block javascripts %}{% endblock %}
+    </body>
+</html>
