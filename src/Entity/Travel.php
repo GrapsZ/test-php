@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\TravelRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -21,11 +22,25 @@ class Travel
 
     /**
      * @ORM\Column(type="string", length=200)
+     * @Assert\Type(
+     *     type="string",
+     *     message="Le nom du voyage doit-être de type {{ type }}."
+     * )
+     * @Assert\Length(
+     *     min="2",
+     *     max="200",
+     *     minMessage="Le nom du voyage doit contenir au moins {{ limit }} caractères",
+     *     maxMessage="Le nom du voyage doit contenir au plus {{ limit }} caractères",
+     * )
      */
     private $name;
 
     /**
      * @ORM\Column(type="float")
+     * @Assert\Type(
+     *     type="float",
+     *     message="Le prix du voyage doit-être de type {{ type }}."
+     * )
      */
     private $price;
 

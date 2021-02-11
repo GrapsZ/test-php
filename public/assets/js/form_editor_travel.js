@@ -3,7 +3,7 @@ $("#travel-form-editor").validate({
         "name-editor": {
             required: true,
             maxlength: 50,
-            minlength: 2
+            minlength: 3
         },
         "price-editor": {
             required: true,

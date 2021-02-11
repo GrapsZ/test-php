@@ -5,17 +5,8 @@ $(document).on("click", ".openEditModal", function () {
     let travelId = $(this).data('id');
     if (travelId) {
         getTravelById(travelId);
+        resetModal();
     }
-});
-
-//Reset la modale pour ne pas se retrouver avec des valeurs d'une modales ouverte précédement
-let template = null;
-$('.modal').on('show.bs.modal', function(event) {
-    template = $(this).html();
-});
-
-$('.modal').on('hidden.bs.modal', function(e) {
-    $(this).html(template);
 });
 
 /**
@@ -72,7 +63,6 @@ function getStages(stages = []) {
         dataType: 'JSON',
         success: function (json) {
             if (json) {
-                //console.log(json);
                 if (json.success) {
                     const multiSelector = document.getElementById("multiple-stage");
                     let total = json.data.length;
@@ -115,24 +105,66 @@ function constructStagesCards(stages) {
     const totalStages = stages.length;
     const stepsTabs = document.getElementById("nav-tab-editor");
     const stepsTabsContent = document.getElementById("nav-tabContent");
+
     for (let i = 0; i < totalStages; i++) {
         if (i === 0) {
             //On a des éléments (stages) pour ce voyage. On décache donc l'ajout de nouvelles étapes.
             const stagesChoice = document.getElementById("stages-choice");
             stagesChoice.classList.remove("hidden");
 
-            stepsTabs.appendChild(createDivItem(stages[i].id,'a', 0));
-            let div = createDivItem(stages[i].id,'div', 0);
-            let p = createDivItem(stages[i].id,'p');
-            p.textContent = `Départ : ${stages[i].departure}. Arrivée : ${stages[i].arrival}. Numéro : ${stages[i].number}. Date de départ : ${stages[i].departure_date}. Date d'arrivée : ${stages[i].arrival_date}`;
+            stepsTabs.appendChild(createDivItem(stages[i],'a', 0));
+            let div = createDivItem(stages[i],'div', 0);
+            let p = createDivItem(stages[i],'p');
+            let hr = createDivItem(stages[i],'hr')
+            let p1 = createDivItem(stages[i],'p');
+            let p2 = createDivItem(stages[i],'p');
+            let p3 = createDivItem(stages[i],'p');
+            let p4 = createDivItem(stages[i],'p');
+
+            p.innerHTML = `Voici les informations enregistrée de cette étape, en partance de <b>${stages[i].departure}</b> et à destination de <b>${stages[i].arrival}</b>.`;
+            p1.innerHTML = `Départ de : <b>${stages[i].departure}</b> le ${stages[i].departure_date}.`;
+            p2.innerHTML = `Arrivée à : <b>${stages[i].arrival}</b> le ${stages[i].arrival_date}.`;
+
+            p3.innerHTML = (stages[i].number === null) ? 'Numéro: <b>Non défini</b> | ' : 'Numéro: <b>' + stages[i].number + '</b> | ';
+            p3.innerHTML += (stages[i].seat === null) ? 'Siège: <b>Non défini</b>' : 'Siège: <b>' + stages[i].seat + '</b>';
+
+            p4.innerHTML = (stages[i].gate === null) ? 'Porte: <b>Non définie</b> | ' : 'Porte: <b>' + stages[i].gate + '</b> | ';
+            p4.innerHTML += (stages[i].baggage_drop === null) ? 'Dépôt de bagages: <b>Non défini</b>' : 'Dépôt de bagages: <b>' + stages[i].baggage_drop + '</b>';
+
             div.appendChild(p);
+            div.appendChild(hr);
+            div.appendChild(p1);
+            div.appendChild(p2);
+            div.appendChild(p3);
+            div.appendChild(p4);
             stepsTabsContent.appendChild(div);
         } else {
-            stepsTabs.appendChild(createDivItem(stages[i].id,'a'));
-            let div = createDivItem(stages[i].id,'div');
-            let p = createDivItem(stages[i].id,'p');
-            p.textContent = `Départ : ${stages[i].departure}. Arrivée : ${stages[i].arrival}. Numéro : ${stages[i].number}. Date de départ : ${stages[i].departure_date}. Date d'arrivée : ${stages[i].arrival_date}`;
+            stepsTabs.appendChild(createDivItem(stages[i],'a'));
+            let div = createDivItem(stages[i],'div');
+
+            let p = createDivItem(stages[i],'p');
+            let hr = createDivItem(stages[i],'hr')
+            let p1 = createDivItem(stages[i],'p');
+            let p2 = createDivItem(stages[i],'p');
+            let p3 = createDivItem(stages[i],'p');
+            let p4 = createDivItem(stages[i],'p');
+
+            p.innerHTML = `Voici les informations enregistrée de cette étape, en partance de <b>${stages[i].departure}</b> et à destination de <b>${stages[i].arrival}</b>.`;
+            p1.innerHTML = `Départ de : <b>${stages[i].departure}</b> le ${stages[i].departure_date}.`;
+            p2.innerHTML = `Arrivée à : <b>${stages[i].arrival}</b> le ${stages[i].arrival_date}.`;
+
+            p3.innerHTML = (stages[i].number === null) ? 'Numéro: <b>Non défini</b> | ' : 'Numéro: <b>' + stages[i].number + '</b> | ';
+            p3.innerHTML += (stages[i].seat === null) ? 'Siège: <b>Non défini</b>' : 'Siège: <b>' + stages[i].seat + '</b>';
+
+            p4.innerHTML = (stages[i].gate === null) ? 'Porte: <b>Non définie</b> | ' : 'Porte: <b>' + stages[i].gate + '</b> | ';
+            p4.innerHTML += (stages[i].baggage_drop === null) ? 'Dépôt de bagages: <b>Non défini</b>' : 'Dépôt de bagages: <b>' + stages[i].baggage_drop + '</b>';
+
             div.appendChild(p);
+            div.appendChild(hr);
+            div.appendChild(p1);
+            div.appendChild(p2);
+            div.appendChild(p3);
+            div.appendChild(p4);
             stepsTabsContent.appendChild(div);
         }
     }
@@ -154,6 +186,36 @@ function constructStagesCards(stages) {
 }
 
 /**
+ * Fonction qui est appelée pour réinitialiser le contenu de la modale d'édition d'un
+ * voyage pour gérer les ouvertures / fermetures des utilisateurs
+ */
+function resetModal() {
+    //Reset jquery validator
+    let form = $('#travel-form-editor');
+    let validator = form.validate();
+    validator.resetForm();
+
+    //multi select
+    const multiSelect = document.getElementById("multiple-stage");
+    multiSelect.innerHTML = "";
+    //Div contenant le multiu select des étapes. (On la cache)
+    const stagesChoiceElement = document.getElementById("stages-choice");
+    stagesChoiceElement.classList.add("hidden");
+    //reset des tuiles/ cards d'étapes
+    const stepsTabs = document.getElementById("nav-tab-editor");
+    stepsTabs.innerHTML = "";
+    //reset du contenu des tuiles / cards d'étapes
+    const stepsTabsContent = document.getElementById("nav-tabContent");
+    stepsTabsContent.innerHTML = "";
+    //reset du nom du voyage
+    const nameEditor = document.getElementById("name-editor");
+    nameEditor.value = "";
+    //reset du prix du voyage
+    const priceEditor = document.getElementById("price-editor");
+    priceEditor.value = "";
+}
+
+/**
  * Après modification du DOM on appelle cette fonction
  * afin d'écouter le clique sur le bouton d'ajout d'une étape.
  * Au clique on supprime l'alerte rouge ainsi que le bouton d'ajout.
@@ -163,42 +225,40 @@ function listenMyClick(domElement) {
     const addStage = document.getElementById("add-stage");
     if (addStage) {
         addStage.addEventListener("click", (event) => {
-            console.log("click ajout étape");
-            getStages();
+            //on affiche la balise contenant le multi selector
             const stagesChoice = document.getElementById("stages-choice");
             stagesChoice.classList.remove("hidden");
-            //On supprime le bouton et l'alerte rouge (2 fois le 1 car fonctionne comme un tableau. On supprime les clefs sans toucher à la clef
-            //zéro qui est le select en hidden.
-            domElement.removeChild(domElement.childNodes[1]);
-            domElement.removeChild(domElement.childNodes[1]);
+            //On supprime le bouton et l'alerte rouge (suppression par la key)
+            domElement.removeChild(domElement.childNodes[1]); // Bouton
+            domElement.removeChild(domElement.childNodes[0]); // Message d'alerte
         });
     }
 }
 
 /**
  * Fonction qui modifie le dom en créant de nouvelles balises html selon leur type et les retourne.
- * @param id
+ * @param json
  * @param type
  * @param number
  * @returns {*}
  */
-function createDivItem(id, type, number = 1) {
+function createDivItem(json, type, number = 1) {
     let balise = document.createElement(type);
 
     if (type === 'a') {
         balise.classList = (number === 0) ? 'nav-item nav-link active show' : 'nav-item nav-link';
-        balise.setAttribute('href', `#nav-${id}`);
+        balise.setAttribute('href', `#nav-${json.id}`);
         balise.setAttribute('data-toggle', `tab`);
         balise.setAttribute('role', `tab`);
-        balise.setAttribute('aria-controls', `nav-${id}`);
+        balise.setAttribute('aria-controls', `nav-${json.id}`);
         (number === 0) ? balise.setAttribute('aria-selected', true) : balise.setAttribute('aria-selected', false);
-        balise.setAttribute('id', `nav-${id}-tab`);
-        balise.textContent = `Etape ${id}`;
+        balise.setAttribute('id', `nav-${json.id}-tab`);
+        balise.textContent = `Etape: ${json.departure} => ${json.arrival}`;
     } else if (type === 'div') {
         balise.classList = (number === 0) ? 'tab-pane fade active show' : 'tab-pane fade';
-        balise.setAttribute('id', `nav-${id}`);
+        balise.setAttribute('id', `nav-${json.id}`);
         balise.setAttribute('role', `tabpanel`);
-        balise.setAttribute('aria-labelledby', `nav-${id}-tab`);
+        balise.setAttribute('aria-labelledby', `nav-${json.id}-tab`);
     }
 
     return balise;

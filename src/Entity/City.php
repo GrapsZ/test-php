@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\CityRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -21,11 +22,31 @@ class City
 
     /**
      * @ORM\Column(type="string", length=200)
+     * @Assert\Type(
+     *     type="string",
+     *     message="Le nom de ville doit-être de type {{ type }}."
+     * )
+     * @Assert\Length(
+     *     min="3",
+     *     max="200",
+     *     minMessage="Le nom de ville doit contenir au moins {{ limit }} caractères",
+     *     maxMessage="Le nom de ville doit contenir au plus {{ limit }} caractères",
+     * )
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=2)
+     * @Assert\Type(
+     *     type="string",
+     *     message="Le tag du pays doit-être de type {{ type }}."
+     * )
+     * @Assert\Length(
+     *     min="2",
+     *     max="2",
+     *     minMessage="Le tag du pays doit contenir au moins {{ limit }} caractères",
+     *     maxMessage="Le tag du pays doit contenir au plus {{ limit }} caractères",
+     * )
      */
     private $countryTag;
 

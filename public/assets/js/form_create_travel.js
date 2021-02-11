@@ -3,7 +3,7 @@ $("#travel-form").validate({
         travelName: {
             required: true,
             maxlength: 50,
-            minlength: 2
+            minlength: 3
         },
         price: {
             required: true,

@@ -2,6 +2,13 @@
 
 {% block title %}{{ page_name }}{% endblock %}
 
+{% block stylesheets %}
+    {#<link href="{{ asset("assets/vendor/select2/select2.min.css") }}" rel="stylesheet" media="all">#}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css">
+    <!-- select2-bootstrap4-theme -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme/dist/select2-bootstrap4.min.css">
+{% endblock %}
+
 {% block body %}
     <div class="section__content">
         <div class="container-fluid">
@@ -73,6 +80,9 @@
     <script src="{{ asset("assets/js/customs.js") }}"></script>
     <script type="text/javascript" src="{{ asset("assets/vendor/jquery-validator/jquery.validate.min.js") }}"></script>
     <script type="text/javascript" src="{{ asset("assets/vendor/jquery-validator/localization/messages_fr.min.js") }}"></script>
+
+    <script src="{{ asset("assets/js/select2-custom.js") }}"></script>
+
     <script type="text/javascript" src="{{ asset("assets/js/form_create_travel.js") }}"></script>
     <script type="text/javascript" src="{{ asset("assets/js/form_editor_travel.js") }}"></script>
 {% endblock %}

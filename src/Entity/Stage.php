@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\StageRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -21,31 +22,73 @@ class Stage
 
     /**
      * @ORM\Column(type="string", length=200)
+     * @Assert\Type(
+     *     type="string",
+     *     message="Le numéro doit-être de type {{ type }}."
+     * )
+     * @Assert\Length(
+     *     min="2",
+     *     max="200",
+     *     minMessage="Le numéro doit contenir au moins {{ limit }} caractères",
+     *     maxMessage="Le numéro doit contenir au plus {{ limit }} caractères",
+     * )
      */
     private $number;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\DateTime
      */
     private $departureDate;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\DateTime
      */
     private $arrivalDate;
 
     /**
      * @ORM\Column(type="string", length=200, nullable=true)
+     * @Assert\Type(
+     *     type="string",
+     *     message="Le siège doit-être de type {{ type }}."
+     * )
+     * @Assert\Length(
+     *     min="2",
+     *     max="200",
+     *     minMessage="Le siège doit contenir au moins {{ limit }} caractères",
+     *     maxMessage="Le siège doit contenir au plus {{ limit }} caractères",
+     * )
      */
     private $seat;
 
     /**
      * @ORM\Column(type="string", length=200, nullable=true)
+     * @Assert\Type(
+     *     type="string",
+     *     message="La porte doit-être de type {{ type }}."
+     * )
+     * @Assert\Length(
+     *     min="2",
+     *     max="200",
+     *     minMessage="La porte doit contenir au moins {{ limit }} caractères",
+     *     maxMessage="La porte doit contenir au plus {{ limit }} caractères",
+     * )
      */
     private $gate;
 
     /**
      * @ORM\Column(type="string", length=200, nullable=true)
+     * @Assert\Type(
+     *     type="string",
+     *     message="Le dépôt des bagages doit-être de type {{ type }}."
+     * )
+     * @Assert\Length(
+     *     min="2",
+     *     max="200",
+     *     minMessage="Le dépôt des bagages doit contenir au moins {{ limit }} caractères",
+     *     maxMessage="Le dépôt des bagages doit contenir au plus {{ limit }} caractères",
+     * )
      */
     private $baggageDrop;
 
