@@ -2,6 +2,8 @@
 
 namespace App\Tests\Controller;
 
+use App\Entity\Travel;
+use Doctrine\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class HomeControllerTest extends WebTestCase
@@ -18,5 +20,18 @@ class HomeControllerTest extends WebTestCase
         $client->request('GET', '/');
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    }
+
+    public function testCrashTravelEditor()
+    {
+        $travel = new Travel();
+        $travel->setName("Voyage 1");
+        $travel->setIsActive(false);
+        $travel->setPrice("b");
+
+        $objectManager = $this->createMock(ObjectManager::class);
+
+        $objectManager->persist($travel);
+        $objectManager->flush();
     }
 }

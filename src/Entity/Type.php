@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\TypeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -21,6 +22,16 @@ class Type
 
     /**
      * @ORM\Column(type="string", length=200)
+     * @Assert\Type(
+     *     type="string",
+     *     message="Le type d'étape doit-être de type {{ type }}."
+     * )
+     * @Assert\Length(
+     *     min="2",
+     *     max="200",
+     *     minMessage="Le type d'étape doit contenir au moins {{ limit }} caractères",
+     *     maxMessage="Le type d'étape doit contenir au plus {{ limit }} caractères",
+     * )
      */
     private $name;
 

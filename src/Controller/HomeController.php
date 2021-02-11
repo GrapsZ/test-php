@@ -135,10 +135,21 @@ class HomeController extends AbstractController
                     $updated = true;
                 }
 
-                //todo problème
-                //todo Les étapes non sélectionnées sont toujours ajoutée au voyage. Trouver comment les supprimer.
                 if (!empty($stagesSelected)) {
-                    //On boucle sur les étapes passées. Si elle est trouvée dans la base de données, on l'ajoute au voyage.
+                    // Les étapes du voyage
+                    $stagesRegistered = $travel->getTravelStage();
+
+                    // Supprime de l'entité les étapes désélectionnées
+                    foreach ($stagesRegistered as $stageRegistered) {
+                        if (!in_array($stageRegistered->getId(), $stagesSelected)) {
+                            $travel->removeTravelStage($stageRegistered);
+                            $manager->flush();
+                            $updated = true;
+                        }
+                    }
+
+                    // Cherche les selected dans la DB.
+                    // Si le stage est existant, on l'ajoute au voyage.
                     foreach ($stagesSelected as $stageSelected) {
                         /**
                          * @var $stage Stage
@@ -151,7 +162,6 @@ class HomeController extends AbstractController
                         }
                     }
                 }
-
 
                 if ($updated) {
                     $this->addFlash("success", "Le voyage <b>" . $travel->getName() . "</b> a bien été modifié.");

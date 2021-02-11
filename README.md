@@ -3,16 +3,27 @@
 
 #### Installation du projet étape par étape
 
+                            Installation avec base de données vide
+
 > composer install
 >
 > php bin/console doctrine:database:create
 >
 > php bin/console doctrine:migrations:migrate
 >
-> php bin/console doctrine:fixtures:load
->
 > symfony server:start
 >
+
+                            Installation avec import d'une base de données
+
+> composer install
+>
+> php bin/console doctrine:database:create
+>
+> php bin/console doctrine:database:import db/travels.sql
+>
+> symfony server:start
+
 
 #### Mettre à jour des éléments dans la base de données.
 
@@ -28,9 +39,12 @@ S'il n'y a que le schéma de base de données à mettre à jour, il faut faire l
 > php bin/console doctrine:schema:update
 >
 
-#### Autres....
+#### Autres informations
 
 > Effectuer ses tests unitaires [tests unitaires](docs/TESTS.md)
 
+> [Mes choix / Améliorations possibles](docs/ENHANCEMENTS.md)
 
-> Visiblité du développement en ligne  : https://transport.mthaize.fr
+> [Remerciements](docs/THANKS.md)
+
+> Visiblité du projet en ligne  : https://transport.mthaize.fr

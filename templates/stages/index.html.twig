@@ -36,7 +36,7 @@
                                     <th>Siège</th>
                                     <th>Porte</th>
                                     <th>Bagages</th>
-                                    <th>Action</th>
+                                    {#<th>Action</th>#}
                                 </tr>
                             </thead>
                             <tbody>
@@ -69,7 +69,8 @@
                                     <td class="font-weight-bold">
                                         {{ stage.baggageDrop }}
                                     </td>
-                                    <td>
+                                    <!--- Todo prévoir par la suite une édition sur les étapes -->
+                                    {#<td>
                                         <div class="table-data-feature">
                                             <span class="openEditModal" data-toggle="modal" data-target="#modal-edit-stage" data-id="{{ stage.id }}">
                                                 <button class="item" data-toggle="tooltip" data-placement="top" title="Editer">
@@ -77,7 +78,7 @@
                                                 </button>
                                             </span>
                                         </div>
-                                    </td>
+                                    </td>#}
                                 </tr>
                             {% endfor %}
                             </tbody>
