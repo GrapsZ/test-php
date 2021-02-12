@@ -1,7 +1,7 @@
 # Agence de voyages
 
 
-#### Installation du projet étape par étape
+####  1 - Installation du projet étape par étape
 
                             Installation avec base de données vide
 
@@ -25,7 +25,7 @@
 > symfony server:start
 
 
-#### Mettre à jour des éléments dans la base de données.
+#### 2 - Mettre à jour des éléments dans la base de données.
 
 Après une modification sur une entity il faut effectuer les commandes suivantes :
 
@@ -37,9 +37,9 @@ Après une modification sur une entity il faut effectuer les commandes suivantes
 S'il n'y a que le schéma de base de données à mettre à jour, il faut faire la commande suivante :
 
 > php bin/console doctrine:schema:update
->
 
-#### Autres informations
+
+#### 3 - Autres informations
 
 > Effectuer ses tests unitaires [tests unitaires](docs/TESTS.md)
 
@@ -48,3 +48,15 @@ S'il n'y a que le schéma de base de données à mettre à jour, il faut faire l
 > [Remerciements](docs/THANKS.md)
 
 > Visiblité du projet en ligne  : https://transport.mthaize.fr
+
+#### 4 - Ressources
+
+> Utilisation de [CoolAdmin](https://github.com/puikinsh/CoolAdmin) pour la mise en forme d'un template.
+
+> Utilisation de [Symfony 5](https://symfony.com/) pour le Backend et Frontend (Twig)
+
+> Utilisation de [Bootstrap](https://getbootstrap.com/) pour la mise en forme.
+
+> Utilisation de [JQuery](https://jquery.com/) en complèment du javascript vanilla pour le gain de temps dans le développement.
+
+> D'autres libraires...
