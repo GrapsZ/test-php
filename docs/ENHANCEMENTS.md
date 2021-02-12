@@ -13,7 +13,7 @@
 > En effet la gestion des étapes n'est pas pratique en l'état actuel. Le mieux aurait été de pouvoir définir un ordre de priorité des étapes pour qu'elles se suivent logiquement. Faire des comparaisons sur les dates de départ de d'arrivées plus poussées, tout cela au moment de l'ajout d'une nouvelle étape, etc...
 
 #### .env
-> Le fichier .env a volontairement été laissé sur le repo git ainsi que dans le projet.
+> Les fichiers .env ont volontairement été laissés dans le repo git ainsi que dans le projet car tout sera supprimé après revue.
 
 ##### Conclusion :
 > Projet fort intéressant que j'aurais aimé appronfondir un peu plus si je ne m'étais pas mis la pression pour le rendre assez rapidement :D
